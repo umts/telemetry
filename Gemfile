@@ -24,7 +24,6 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'fakefs'
   gem 'rack-test'
   gem 'simplecov', require: false
   gem 'sinatra', require: false

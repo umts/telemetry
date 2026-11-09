@@ -6,8 +6,7 @@ The logger will write to the file `log/#{RACK_ENV}.log`, relative to your app ro
 
 ```ruby
 class YourApp < Sinatra::Base
-  register UMTS::Telemetry::Sinatra::ErrorMailer
-  register UMTS::Telemetry::Sinatra::Logger
+  register UMTS::Telemetry::Sinatra
 
   # if you are somewhere like lib/your_app.rb
   set :root, Pathname(__dir__).join("..")
