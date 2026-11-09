@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative 'telemetry/sinatra'
 require_relative 'telemetry/version'
 
 module UMTS

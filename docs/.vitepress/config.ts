@@ -12,6 +12,10 @@ export default defineConfig({
         text: "Setup",
         items: [{ text: "Installation", link: "/installation" }],
       },
+      {
+        text: "Reference",
+        items: [{ text: "Sinatra", link: "/sinatra" }],
+      },
     ],
     socialLinks: [{ icon: "github", link: "https://github.com/umts/telemetry" }],
   },
