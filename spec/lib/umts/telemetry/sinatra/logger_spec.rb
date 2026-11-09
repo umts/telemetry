@@ -2,8 +2,7 @@
 
 require 'fakefs/safe'
 require 'rack/test'
-require 'sinatra'
-require 'umts/telemetry/sinatra/logger'
+require 'sinatra/base'
 
 RSpec.describe UMTS::Telemetry::Sinatra::Logger do
   include Rack::Test::Methods

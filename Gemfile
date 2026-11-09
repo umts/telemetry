@@ -27,5 +27,5 @@ group :test do
   gem 'fakefs'
   gem 'rack-test'
   gem 'simplecov', require: false
-  gem 'sinatra'
+  gem 'sinatra', require: false
 end
