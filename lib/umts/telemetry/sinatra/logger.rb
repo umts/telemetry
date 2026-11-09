@@ -6,7 +6,7 @@ module UMTS
       module Logger
         class << self
           def registered(app)
-            log_file = open_log_file!(app.settings.environment)
+            log_file = open_log_file!(app)
             app.enable :logging
             app.before { env['rack.errors'] = log_file }
           end
