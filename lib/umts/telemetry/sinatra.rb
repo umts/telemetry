@@ -5,7 +5,7 @@ module UMTS
     module Sinatra
       class << self
         def registered(app)
-          app.use ErrorMailer
+          app.use ErrorHandler
           app.enable :logging
           app.set :log_file, nil
           app.before do
@@ -24,7 +24,7 @@ module UMTS
         end
       end
 
-      class ErrorMailer
+      class ErrorHandler
         def initialize(app)
           @app = app
         end
