@@ -7,4 +7,7 @@ hero:
     - theme: brand
       text: Getting Started
       link: /installation
+    - theme: alt
+      text: Reference
+      link: /sinatra
 ---
