@@ -6,20 +6,23 @@ module UMTS
       module Logger
         class << self
           def registered(app)
-            log_file = open_log_file!(app)
+            memo = memoized_log_file(app)
             app.enable :logging
-            app.before { env['rack.errors'] = log_file }
+            app.before { env['rack.errors'] = memo.call }
           end
 
           private
 
-          def open_log_file!(app)
-            Pathname(app.settings.root).join('log')
-                                       .expand_path
-                                       .tap(&:mkpath)
-                                       .join("#{app.settings.environment}.log")
-                                       .open('a+')
-                                       .tap { |file| file.sync = true }
+          def memoized_log_file(app)
+            file = nil
+            lambda do
+              file ||= Pathname(app.settings.root).join('log')
+                                                  .expand_path
+                                                  .tap(&:mkpath)
+                                                  .join("#{app.settings.environment}.log")
+                                                  .open('a+')
+                                                  .tap { |file| file.sync = true }
+            end
           end
         end
       end

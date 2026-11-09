@@ -12,9 +12,10 @@ RSpec.describe UMTS::Telemetry::Sinatra::Logger do
 
   let(:app) do
     Class.new(Sinatra::Base) do
+      register UMTS::Telemetry::Sinatra::Logger
+
       set :root, '/fake/root'
       set :environment, :fake_environment
-      register UMTS::Telemetry::Sinatra::Logger
 
       get('/') { 200 }
     end
