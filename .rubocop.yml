@@ -1,0 +1,24 @@
+plugins:
+  - rubocop-capybara
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rake
+  - rubocop-rspec
+  - rubocop-rspec_rails
+AllCops:
+  TargetRubyVersion: 3.3
+  Exclude:
+    - .bundle/**/*
+    - spec/dummy/db/schema.rb
+    - vendor/**/*
+  NewCops: enable
+Metrics/AbcSize:
+  CountRepeatedAttributes: false
+RSpec/ExampleLength:
+  CountAsOne:
+    - array
+    - hash
+    - heredoc
+    - method_call
+Style/Documentation:
+  Enabled: false
