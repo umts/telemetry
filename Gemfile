@@ -7,6 +7,7 @@ gemspec
 gem 'dotenv'
 gem 'listen'
 gem 'puma', require: false
+gem 'rails'
 gem 'rake', require: false
 gem 'rspec-rails', require: false
 

@@ -19,5 +19,6 @@ Gem::Specification.new do |spec|
     Dir['{app,config,db,lib}/**/*', 'LICENSE.md', 'README.md']
   end
 
+  spec.add_dependency 'mail', '>= 2.8', '< 3'
   spec.required_ruby_version = '>= 3.3.0'
 end

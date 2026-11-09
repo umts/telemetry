@@ -4,7 +4,7 @@ require_relative 'boot'
 
 require 'rails'
 require 'action_controller/railtie'
-require 'action_view/railtie'
+require 'action_mailer/railtie'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -26,5 +26,7 @@ module Dummy
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.action_mailer.preview_paths << Rails.root.join('app/mailers').to_s
   end
 end
