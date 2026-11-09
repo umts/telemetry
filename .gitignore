@@ -1,0 +1,13 @@
+/coverage/
+/docs/.vitepress/cache/
+/docs/.vitepress/dist/
+/node_modules/
+/pkg/
+/spec/dummy/log/
+/spec/dummy/public/assets/
+/spec/dummy/storage/
+/spec/dummy/tmp/
+/spec/examples.txt
+umts-telemetry-*.gem
+
+*.local
