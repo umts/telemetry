@@ -25,7 +25,8 @@ RSpec.describe UMTS::Telemetry::ErrorMail do
     end
 
     it 'has the error class and backtrace in the body' do
-      expect(call.body).to include('RuntimeError', *error.backtrace)
+      lines = error.backtrace.map { |line| line.delete_prefix(Dir.pwd).delete_prefix(Gem.dir).delete_prefix('/') }
+      expect(call.body).to include('RuntimeError', *lines)
     end
 
     context 'with no repository configured' do

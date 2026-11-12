@@ -64,7 +64,7 @@
                 <div style="background-color: #212529; color: #fefefe; padding: 28px">
                   <h1 style="margin: 0"><%= @error.class %></h1>
                   <hr style="margin: 14px 0" />
-                  <pre style="margin: 0"><%= @error.backtrace&.join("\n") || "No backtrace given" %></pre>
+                  <pre style="margin: 0"><%= trimmed_backtrace || 'No backtrace given' %></pre>
                 </div>
               </td>
             </tr>

@@ -27,6 +27,12 @@ module UMTS
       def render_body
         ERB.new(File.read(TEMPLATE)).result(binding)
       end
+
+      def trimmed_backtrace
+        @error.backtrace
+              &.map { |line| line.delete_prefix(Dir.pwd).delete_prefix(Gem.dir).delete_prefix('/') }
+              &.join("\n")
+      end
     end
   end
 end
