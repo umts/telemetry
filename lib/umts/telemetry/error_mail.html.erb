@@ -62,9 +62,13 @@
             <tr>
               <td style="padding: 28px">
                 <div style="background-color: #212529; color: #fefefe; padding: 28px">
-                  <h1 style="margin: 0"><%= @error.class %></h1>
+                  <h2 style="margin: 0"><span style="font-size: 0">## </span>Error</h2>
                   <hr style="margin: 14px 0" />
+                  <div style="font-size: 0">```</div>
+                  <pre style="margin: 0"><%= @error.class %>: <%= @error.message %></pre>
+                  <br />
                   <pre style="margin: 0"><%= trimmed_backtrace || 'No backtrace given' %></pre>
+                  <div style="font-size: 0">```</div>
                 </div>
               </td>
             </tr>
