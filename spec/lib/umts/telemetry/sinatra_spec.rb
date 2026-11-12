@@ -24,8 +24,13 @@ RSpec.describe UMTS::Telemetry::Sinatra do
       end
     end
   end
+  let(:mail) { instance_double(UMTS::Telemetry::ErrorMail) }
 
-  before { allow(UMTS::Telemetry).to receive(:error!).and_return(nil) }
+  before do
+    allow(UMTS::Telemetry::ErrorMail).to receive(:new).and_return(mail)
+    allow(mail).to receive(:deliver!).and_return(nil)
+  end
+
   after { FileUtils.remove_entry(tmp) }
 
   it 'enables logging' do
@@ -44,7 +49,7 @@ RSpec.describe UMTS::Telemetry::Sinatra do
   it 'reports errors' do
     get '/error'
   rescue StandardError
-    expect(UMTS::Telemetry).to have_received(:error!).with(
+    expect(UMTS::Telemetry::Mail).to have_received(:new).with(
       instance_of(RuntimeError).and(having_attributes(message: 'uh oh'))
     )
   end
