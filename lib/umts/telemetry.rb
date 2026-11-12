@@ -10,6 +10,8 @@ module UMTS
       attr_accessor :repository
 
       def error!(error)
+        return unless ENV['RACK_ENV'] == 'production'
+
         ErrorMail.new(error).deliver!
       end
     end
