@@ -9,19 +9,22 @@ module UMTS
 
       def initialize(error)
         @error = error
-        html = render
+        error_subject = render_subject
+        error_body = render_body
         super do
           from 'transportation-it@admin.umass.edu'
           to 'programmers@admin.umass.edu'
-          subject "#{@error.class} from gtfs-cache"
+          subject error_subject
           content_type 'text/html; charset=UTF-8'
-          body html
+          body error_body
         end
       end
 
       private
 
-      def render
+      def render_subject = "#{@error.class} from #{Telemetry.repository || 'unknown app'}"
+
+      def render_body
         ERB.new(File.read(TEMPLATE)).result(binding)
       end
     end

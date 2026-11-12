@@ -7,6 +7,8 @@ require_relative 'telemetry/version'
 module UMTS
   module Telemetry
     class << self
+      attr_accessor :repository
+
       def error!(error)
         ErrorMail.new(error).deliver!
       end
