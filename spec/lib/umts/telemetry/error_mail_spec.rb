@@ -2,9 +2,7 @@
 
 RSpec.describe UMTS::Telemetry::ErrorMail do
   describe '#initialize' do
-    subject(:call) do
-      described_class.new(error)
-    end
+    subject(:call) { described_class.new(error, context: { 'Context' => { 'Key' => 'Value' } }) }
 
     let(:error) do
       raise 'Test error'
@@ -24,9 +22,23 @@ RSpec.describe UMTS::Telemetry::ErrorMail do
       expect(call.subject).to include('RuntimeError')
     end
 
-    it 'has the error class and backtrace in the body' do
-      lines = error.backtrace.map { |line| line.delete_prefix(Dir.pwd).delete_prefix(Gem.dir).delete_prefix('/') }
-      expect(call.body).to include('RuntimeError', *lines)
+    it 'has the error class in the body' do
+      expect(call.body).to include('RuntimeError')
+    end
+
+    context 'with a backtrace' do
+      it 'has the backtrace in the body' do
+        lines = error.backtrace.map { |line| line.delete_prefix(Dir.pwd).delete_prefix(Gem.dir).delete_prefix('/') }
+        expect(call.body).to include('RuntimeError', *lines)
+      end
+    end
+
+    context 'without a backtrace' do
+      let(:error) { RuntimeError.new('No backtrace') }
+
+      it 'signifies no backtrace was given' do
+        expect(call.body).to include('No backtrace given')
+      end
     end
 
     context 'with no repository configured' do
