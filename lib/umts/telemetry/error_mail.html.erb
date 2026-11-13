@@ -1,0 +1,94 @@
+<html lang="en" xmlns:o="urn:schemas-microsoft-com:office:office">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="supported-color-schemes" content="light dark" />
+    <style>
+      :root {
+        color-scheme: light dark;
+        supported-color-schemes: light dark;
+      }
+    </style>
+    <!--[if mso]>
+      <xml>
+        <o:OfficeDocumentSettings>
+          <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+      </xml>
+    <![endif]-->
+  </head>
+  <body
+    style="
+      margin: 0;
+      padding: 0;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%
+    "
+  >
+    <table
+      width="100%"
+      border="0"
+      cellspacing="0"
+      cellpadding="0"
+      style="border-collapse: collapse"
+    >
+      <tr>
+        <td align="center">
+          <!--[if mso]>
+            <table
+              width="100%"
+              border="0"
+              cellspacing="0"
+              cellpadding="0"
+              align="center"
+              style="width: 100%;"
+            ><tr><td>
+          <![endif]-->
+          <table
+            width="100%"
+            border="0"
+            cellspacing="0"
+            cellpadding="0"
+            style="
+              width: 100%;
+              margin: 0 auto;
+              text-align: left;
+              font-size: 14px;
+              font-family: Arial, Helvetica, sans-serif;
+              border-collapse: collapse;
+            "
+          >
+            <tr>
+              <td style="padding: 28px">
+                <div style="background-color: #212529; color: #fefefe; padding: 28px">
+                  <h2 style="margin: 0">Error</h2>
+                  <hr style="margin: 14px 0" />
+                  <pre style="margin-bottom: 14px"><%= @error.class %>: <%= @error.message %></pre>
+                  <pre style="margin: 0"><%= trimmed_backtrace || 'No backtrace given' %></pre>
+                </div>
+                <% @context.each do |name, values| %>
+                  <div style="background-color: #212529; color: #fefefe; padding: 28px; margin-top: 28px">
+                    <h2 style="margin: 0"><%= name %></h2>
+                    <hr style="margin: 14px 0" />
+                    <table>
+                      <% sanitize(values).each do |key, value| %>
+                        <tr>
+                          <th style="text-align: left; padding-right: 14px"><%= key %></th>
+                          <td><%= value %></td>
+                        </tr>
+                      <% end %>
+                    </table>
+                  </div>
+                <% end %>
+              </td>
+            </tr>
+          </table>
+          <!--[if mso]>
+            </td></tr></table>
+          <![endif]-->
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

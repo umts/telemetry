@@ -1,16 +1,15 @@
 # frozen_string_literal: true
 
 class ErrorMailerPreview < ActionMailer::Preview
-  TEMPLATE = File.expand_path('../../../../lib/umts/mail.html.erb', __dir__)
-
   def mail
-    html = ERB.new(File.read(TEMPLATE)).result(binding)
-    ::Mail.new do
-      from         'bobo@test.com'
-      to           'bobo@test.com'
-      subject      'test mail'
-      content_type 'text/html; charset=UTF-8'
-      body         html
-    end
+    UMTS::Telemetry::ErrorMail.new(error, context: { 'Environment' => ActionDispatch::TestRequest.create.env })
+  end
+
+  private
+
+  def error
+    raise 'Some error'
+  rescue StandardError => e
+    e
   end
 end
