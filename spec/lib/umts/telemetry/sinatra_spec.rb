@@ -52,7 +52,7 @@ RSpec.describe UMTS::Telemetry::Sinatra do
     it 'reports errors' do
       get '/error'
     rescue StandardError
-      expect(UMTS::Telemetry::Mail).to have_received(:new).with(
+      expect(UMTS::Telemetry::ErrorMail).to have_received(:new).with(
         instance_of(RuntimeError).and(having_attributes(message: 'uh oh'))
       )
     end
@@ -64,7 +64,7 @@ RSpec.describe UMTS::Telemetry::Sinatra do
     it 'does not report errors' do
       get '/error'
     rescue StandardError
-      expect(UMTS::Telemetry::Mail).not_to have_received(:new)
+      expect(UMTS::Telemetry::ErrorMail).not_to have_received(:new)
     end
   end
 end

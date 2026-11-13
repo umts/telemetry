@@ -2,13 +2,14 @@
 
 class ErrorMailerPreview < ActionMailer::Preview
   def mail
-    error = begin
-      raise 'Some error'
-    rescue StandardError => e
-      e
-    end
-    context = { 'Context 1' => { 'Key 1' => 'Value 1', 'Key 2' => 'Value 2' },
-                'Context 2' => { 'Key 1' => 'Value 1', 'Key 2' => 'Value 2' } }
-    UMTS::Telemetry::ErrorMail.new(error, context:)
+    UMTS::Telemetry::ErrorMail.new(error, context: { 'Environment' => ActionDispatch::TestRequest.create.env })
+  end
+
+  private
+
+  def error
+    raise 'Some error'
+  rescue StandardError => e
+    e
   end
 end

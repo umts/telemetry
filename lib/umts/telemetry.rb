@@ -13,10 +13,10 @@ module UMTS
         %i[passw email secret token _key crypt salt certificate otp ssn cvv cvc github]
       end
 
-      def error!(error)
+      def error!(error, context: {})
         return unless ENV['RACK_ENV'] == 'production'
 
-        ErrorMail.new(error).deliver!
+        ErrorMail.new(error, context:).deliver!
       end
     end
   end

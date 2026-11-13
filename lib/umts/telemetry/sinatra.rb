@@ -30,7 +30,11 @@ module UMTS
         end
 
         def call(env)
-          @app.call(env).tap { env['sinatra.error']&.then { |error| Telemetry.error!(error) } }
+          @app.call(env).tap do
+            env['sinatra.error']&.then do |error|
+              Telemetry.error!(error, context: { 'Environment' => env })
+            end
+          end
         end
       end
     end
