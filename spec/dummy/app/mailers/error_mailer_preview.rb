@@ -7,6 +7,8 @@ class ErrorMailerPreview < ActionMailer::Preview
     rescue StandardError => e
       e
     end
-    UMTS::Telemetry::ErrorMail.new(error)
+    context = { 'Context 1' => { 'Key 1' => 'Value 1', 'Key 2' => 'Value 2' },
+                'Context 2' => { 'Key 1' => 'Value 1', 'Key 2' => 'Value 2' } }
+    UMTS::Telemetry::ErrorMail.new(error, context:)
   end
 end

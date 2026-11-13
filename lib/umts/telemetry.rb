@@ -9,6 +9,10 @@ module UMTS
     class << self
       attr_accessor :repository
 
+      def filter_parameters
+        %i[passw email secret token _key crypt salt certificate otp ssn cvv cvc github]
+      end
+
       def error!(error)
         return unless ENV['RACK_ENV'] == 'production'
 

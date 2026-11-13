@@ -62,14 +62,25 @@
             <tr>
               <td style="padding: 28px">
                 <div style="background-color: #212529; color: #fefefe; padding: 28px">
-                  <h2 style="margin: 0"><span style="font-size: 0">## </span>Error</h2>
+                  <h2 style="margin: 0">Error</h2>
                   <hr style="margin: 14px 0" />
-                  <div style="font-size: 0">```</div>
-                  <pre style="margin: 0"><%= @error.class %>: <%= @error.message %></pre>
-                  <br />
+                  <pre style="margin-bottom: 14px"><%= @error.class %>: <%= @error.message %></pre>
                   <pre style="margin: 0"><%= trimmed_backtrace || 'No backtrace given' %></pre>
-                  <div style="font-size: 0">```</div>
                 </div>
+                <% @context.each do |name, values| %>
+                  <div style="background-color: #212529; color: #fefefe; padding: 28px; margin-top: 28px">
+                    <h2 style="margin: 0"><%= name %></h2>
+                    <hr style="margin: 14px 0" />
+                    <table>
+                      <% sanitize(values).each do |key, value| %>
+                        <tr>
+                          <th style="padding-right: 14px"><%= name %></th>
+                          <td><%= value %></td>
+                        </tr>
+                      <% end %>
+                    </table>
+                  </div>
+                <% end %>
               </td>
             </tr>
           </table>

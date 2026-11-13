@@ -7,8 +7,9 @@ module UMTS
     class ErrorMail < Mail::Message
       TEMPLATE = File.expand_path('error_mail.html.erb', __dir__)
 
-      def initialize(error)
+      def initialize(error, context: {}) # rubocop:disable Metrics/MethodLength
         @error = error
+        @context = context
         error_subject = render_subject
         error_body = render_body
         super do
@@ -32,6 +33,10 @@ module UMTS
         @error.backtrace
               &.map { |line| line.delete_prefix(Dir.pwd).delete_prefix(Gem.dir).delete_prefix('/') }
               &.join("\n")
+      end
+
+      def sanitize(context)
+        context.reject { |key, _| Telemetry.filter_parameters.any? { |pattern| key.to_s.include?(pattern.to_s) } }
       end
     end
   end
